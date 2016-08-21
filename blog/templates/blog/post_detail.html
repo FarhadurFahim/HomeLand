@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+    <div class="post">
+        {% csrf_token %}
+        {% if user == post.author %}
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        {% endif %}
+        <section class="container">
+            <div class="row">
+              <div class="col-md-12" id="post">
+                  <div class="col-md-6">
+                    <img class="img-responsive " src="/media/{{post.picture}}">
+                  </div>
+                  <div class="col-md-4 col-md-offset-1" id="details">
+                  <h2 class="text-center">{{ post.title }}</h2>
+                   <h4><i class="glyphicon glyphicon-user"></i>   Author :  <a href="#">{{post.author}}</a></h4>
+                  <div class="date">
+                    {{ post.published_date }}
+                </div>
+                    <p>  
+                    {{ post.text|linebreaks }}
+                  </p>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  {% if user.is_authenticated %}
+                    <button type="submit" class="btn btn-primary">Interested</button>
+                  {% endif %}   
+                  </div>
+                </div>
+                </div>
+                </section>
+    </div>
+    </form>
+{% endblock %}

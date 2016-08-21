@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+	<!---{% if user == object %}
+	{% endif %}-->
+	<h2>{{ object.user.username }} Profile</h2>
+	<p>Username: {{object.user.username}}</p>
+	<p>Email: {{object.user.email}}</p>
+	<p>Name: {{ object.name }}</p>
+	<p>Contact: {{ object.contactNo }}</p>
+	<p>Address: {{ object.address }}</p>
+	<p>Bio: {{ object.bio }}</p>
+	<form action="/profile/d/update">
+    <input type="submit" value="Edit"> </form>
+
+    
+{% endblock %}
